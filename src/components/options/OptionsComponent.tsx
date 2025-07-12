@@ -53,7 +53,7 @@ const routes = [
 
 export default function OptionsComponent() {
   return (
-    <div className="bg-[var(--background)] h-[50vh] flex flex-col justify-center items-center gap-6 p-4 text-[var(--foreground)]">
+    <div className="bg-[var(--background)] h-[60vh] flex flex-col justify-center items-center gap-6 p-4 text-[var(--foreground)]">
       
       <nav
         role="navigation"
