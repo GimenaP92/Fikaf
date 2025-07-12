@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { Box, Typography, Paper } from '@mui/material'
 
 const sections = [
   {
@@ -32,52 +31,31 @@ const sections = [
 
 export default function AboutUs() {
   return (
-    <Box
-      sx={{
-        maxWidth: 1000,
-        margin: 'auto',
-        padding: { xs: 2, md: 4 },
-        color: 'var(--foreground)',
-      }}
-    >
-      <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }}>
-        Sobre <span style={{ color: 'var(--tertiary)' }}>FIKAF</span>
-      </Typography>
+    <main className="max-w-5xl mx-auto px-4 md:px-8 text-foreground">
+      <h1 className="text-3xl font-bold text-center mb-10">
+        Sobre <span className="text-tertiary">FIKAF</span>
+      </h1>
 
-      {sections.map((s, i) => (
-        <Paper
-          key={i}
-          elevation={3}
-          sx={{
-            mb: 3,
-            p: 3,
-            borderRadius: 3,
-            backgroundColor: 'var(--background)',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.08)',
-          }}
-        >
-          <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'var(--tertiary)', mb: 1 }}>
-            {s.title}
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'var(--foreground)' }}>
-            {s.text}
-          </Typography>
-        </Paper>
-      ))}
+      <section className="space-y-8">
+        {sections.map((section, i) => (
+          <article
+            key={i}
+            className="bg-background rounded-xl p-6 shadow-md shadow-black/10"
+          >
+            <h2 className="text-xl font-bold text-tertiary mb-2">{section.title}</h2>
+            <p className="text-base text-foreground">{section.text}</p>
+          </article>
+        ))}
+      </section>
 
-      <Box
-        component="img"
-        src="/images/fikaf-team.jpg"
-        alt="Equipo FIKAF"
-        sx={{
-          mt: 4,
-          borderRadius: 3,
-          width: '100%',
-          maxHeight: 400,
-          objectFit: 'cover',
-          boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
-        }}
-      />
-    </Box>
+      <figure className="mt-10 overflow-hidden rounded-xl shadow-lg shadow-black/10">
+        <img
+          src="/images/fikaf-team.jpg"
+          alt="Equipo FIKAF"
+          className="w-full max-h-96 object-cover"
+          loading="lazy"
+        />
+      </figure>
+    </main>
   )
 }

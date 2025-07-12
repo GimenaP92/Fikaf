@@ -1,87 +1,86 @@
 'use client'
 
 import Link from 'next/link'
-import { Button, Typography, Box } from '@mui/material'
 import WhatsAppButton from '../wsp/WspButton'
+import {
+  FaDumbbell,
+  FaUserMd,
+  FaHandsHelping,
+  FaInfoCircle,
+  FaPhoneAlt,
+  FaHandHoldingHeart,
+} from 'react-icons/fa'
+import { GiFootprint } from 'react-icons/gi'
 
-const routeMap = {
-  'Kinesiología': '/options/physiotherapy',
-  'Osteopatía': '/options/osteopathy',
-  'Gimnasio': '/options/gym',
-  '¿Quiénes somos?': '/options/about-us',
-  'Contacto': '/options/contact',
-} as const
-
-
-type RouteKey = keyof typeof routeMap
-
-const buttonLabels: RouteKey[] = [
-  'Kinesiología',
-  'Osteopatía',
-  'Gimnasio',
-  '¿Quiénes somos?',
-  'Contacto',
+const routes = [
+  {
+    id: 'physiotherapy',
+    name: 'Kinesiología',
+    href: '/options/physiotherapy',
+    icon: <FaHandHoldingHeart />,
+  },
+  {
+    id: 'osteopathy',
+    name: 'Osteopatía',
+    href: '/options/osteopathy',
+    icon: <FaHandsHelping />,
+  },
+  {
+    id: 'gym',
+    name: 'Gimnasio',
+    href: '/options/gym',
+    icon: <FaDumbbell />,
+  },
+  {
+    id: 'podiatry',
+    name: 'Podología',
+    href: '/options/podiatry',
+    icon: <GiFootprint />,
+  },
+  {
+    id: 'contact',
+    name: 'Contacto',
+    href: '/options/contact',
+    icon: <FaPhoneAlt />,
+  },
+  {
+    id: 'about-us',
+    name: '¿Quiénes somos?',
+    href: '/options/about-us',
+    icon: <FaInfoCircle />,
+  },
 ]
 
 export default function OptionsComponent() {
   return (
-    <Box
-      sx={{
-        backgroundColor: 'var(--background)',
-        height: '80vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 3,
-        padding: 2,
-        color: 'var(--foreground)',
-      }}
-    >
-      <Typography
-        variant="body1"
-        align="center"
-        sx={{
-          color: 'var(--foreground)',
-          maxWidth: 300,
-          lineHeight: 1.5,
-        }}
+    <div className="bg-[var(--background)] h-[50vh] flex flex-col justify-center items-center gap-6 p-4 text-[var(--foreground)]">
+      
+      <nav
+        role="navigation"
+        aria-label="Opciones de navegación"
+        className="flex flex-col w-4/5 max-w-[250px] border-t border-b border-gray-300"
       >
-        Tu bienestar, nuestro compromiso.{' '}
-        <span style={{ color: 'var(--tertiary)', fontWeight: 'bold' }}>Kinesiología</span> y{' '}
-        <span style={{ color: 'var(--tertiary)', fontWeight: 'bold' }}>actividad física</span> para todas
-        las edades.
-      </Typography>
-
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '80%', maxWidth: 250 }}>
-        {buttonLabels.map((label, index) => (
-          <Link key={index} href={routeMap[label]}>
-            <Button
-              variant="contained"
-              fullWidth
-              sx={{
-                backgroundColor: 'var(--background)',
-                color: 'var(--foreground)',
-                borderRadius: '200px',
-                textTransform: 'none',
-                fontWeight: 'bold',
-                height: 48,
-                boxShadow: '0 0 4px 0px var(--tertiary)',
-                ':hover': {
-                  backgroundColor: 'var(--tertiaryHover)',
-                  cursor: 'pointer',
-                },
-              }}
-            >
-              {label}
-            </Button>
+        {routes.map((route, index) => (
+          <Link
+            key={route.id}
+            href={route.href}
+            className={`
+              block text-[var(--tertiary)] font-bold text-center h-12
+              border-b ${index < routes.length - 1 ? 'border-gray-300' : 'border-transparent'}
+              hover:bg-[rgba(37,211,102,0.1)] cursor-pointer
+              select-none
+              flex items-center justify-start gap-3 px-4
+            `}
+          >
+            <span className="text-xl">{route.icon}</span>
+            <span className="text-base">{route.name}</span>
           </Link>
         ))}
-      </Box>
+      </nav>
 
-      <div style={{ position: 'fixed', bottom: 120, right: 20, zIndex: 1000 }}>
+      <div className="fixed bottom-90 right-5 z-50">
         <WhatsAppButton />
       </div>
-    </Box>
+    </div>
   )
 }
