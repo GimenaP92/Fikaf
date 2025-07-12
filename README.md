@@ -35,7 +35,7 @@ En la sección de contacto se muestra un mapa embebido de Google Maps para facil
 ## 🚀 Despliegue
 
 El sitio está desplegado en [Vercel](https://vercel.com/) para asegurar velocidad, seguridad y fácil mantenimiento.
-Puedes ingresar aqui: https://vercel.com/gimenas-projects-7932c636/fikaf
+Puedes ingresar aqui: (https://fikaf-gimenas-projects-7932c636.vercel.app/)
 ---
 
 ## 🛠️ Instalación local (opcional)
